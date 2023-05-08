@@ -5,14 +5,29 @@ import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 
 public class Main {
+
     public static void main(String[] args) {
         String model3 = "model3.csv";
-        String modelS = "modelS.csv";
         String modelX = "modelX.csv";
-        String[] headers = { "Date", "Sales" };
-        SalesReport salesReport = new SalesReport(headers);
+        String modelS = "modelS.csv";
 
-        try (BufferedReader br = new BufferedReader(new FileReader(model3))) {
+        String[] headers = { "Date", "Sales" };
+
+        SalesReport model3SalesReport = new SalesReport(headers);
+        SalesReport modelXSalesReport = new SalesReport(headers);
+        SalesReport modelSSalesReport = new SalesReport(headers);
+
+        processSalesData(model3, model3SalesReport);
+        processSalesData(modelX, modelXSalesReport);
+        processSalesData(modelS, modelSSalesReport);
+
+        outputSalesReport("Model 3", model3SalesReport);
+        outputSalesReport("Model X", modelXSalesReport);
+        outputSalesReport("Model S", modelSSalesReport);
+    }
+
+    public static void processSalesData(String fileName, SalesReport salesReport) {
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             br.readLine();
 
             String line;
@@ -27,7 +42,12 @@ public class Main {
         } catch (IOException e) {
             System.err.format("IOException: %s%n", e);
         }
+    }
 
+    public static void outputSalesReport(String modelName, SalesReport salesReport) {
+        System.out.println(modelName + " Yearly Sales Report");
+        System.out.println("---------------------------");
         salesReport.outputSalesReport();
+        System.out.println();
     }
 }
