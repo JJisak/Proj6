@@ -49,6 +49,8 @@ class SalesReport {
         System.out.println();
         System.out.printf("The best month for " + modelName + " was: %s%n", this.bestMonth.format(DateTimeFormatter.ofPattern("yyyy-MM")));
         System.out.printf("The worst month for " + modelName + " was: %s%n", this.worstMonth.format(DateTimeFormatter.ofPattern("yyyy-MM")));
+        System.out.println();
+
     }
 }
 
