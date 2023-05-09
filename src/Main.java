@@ -1,8 +1,12 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.Year;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 public class Main {
 
@@ -11,7 +15,7 @@ public class Main {
         String modelX = "modelX.csv";
         String modelS = "modelS.csv";
 
-        String[] headers = { "Date", "Sales" };
+        String[] headers = {"Date", "Sales"};
 
         SalesReport model3SalesReport = new SalesReport(headers);
         SalesReport modelXSalesReport = new SalesReport(headers);
@@ -21,9 +25,9 @@ public class Main {
         processSalesData(modelX, modelXSalesReport);
         processSalesData(modelS, modelSSalesReport);
 
-        outputSalesReport("Model 3", model3SalesReport);
-        outputSalesReport("Model X", modelXSalesReport);
-        outputSalesReport("Model S", modelSSalesReport);
+        model3SalesReport.outputSalesReport("Model 3");
+        modelXSalesReport.outputSalesReport("Model X");
+        modelSSalesReport.outputSalesReport("Model S");
     }
 
     public static void processSalesData(String fileName, SalesReport salesReport) {
@@ -44,10 +48,4 @@ public class Main {
         }
     }
 
-    public static void outputSalesReport(String modelName, SalesReport salesReport) {
-        System.out.println(modelName + " Yearly Sales Report");
-        System.out.println("---------------------------");
-        salesReport.outputSalesReport();
-        System.out.println();
-    }
 }
