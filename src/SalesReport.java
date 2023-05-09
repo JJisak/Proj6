@@ -1,4 +1,3 @@
-
 import java.time.Year;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
@@ -32,12 +31,14 @@ class SalesReport {
             this.worstMonthSales = sales;
             this.worstMonth = yearMonth;
         }
-
     }
 
-    public void outputSalesReport() {
-        System.out.println("Model 3 Yearly Sales Report");
+
+
+    public void outputSalesReport(String modelName) {
+        System.out.println(modelName + " Yearly Sales Report");
         System.out.println("---------------------------");
+
         Iterator var1 = this.yearlySales.keySet().iterator();
 
         while(var1.hasNext()) {
@@ -46,7 +47,8 @@ class SalesReport {
         }
 
         System.out.println();
-        System.out.printf("The best month for Model 3 was: %s%n", this.bestMonth.format(DateTimeFormatter.ofPattern("yyyy-MM")));
-        System.out.printf("The worst month for Model 3 was: %s%n", this.worstMonth.format(DateTimeFormatter.ofPattern("yyyy-MM")));
+        System.out.printf("The best month for " + modelName + " was: %s%n", this.bestMonth.format(DateTimeFormatter.ofPattern("yyyy-MM")));
+        System.out.printf("The worst month for " + modelName + " was: %s%n", this.worstMonth.format(DateTimeFormatter.ofPattern("yyyy-MM")));
     }
 }
+
